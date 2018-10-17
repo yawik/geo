@@ -21,7 +21,7 @@ use Zend\Form\Exception\InvalidArgumentException;
 
 /**
  * Select element for locations.
- * 
+ *
  * @author Mathias Gelhausen <gelhausen@cross-solution.de>
  * @since 0.29
  * @since 0.29.2 - Add support for multiple selections.
@@ -93,6 +93,5 @@ class GeoSelect extends Select implements HeadscriptProviderInterface, HydratorS
                 'data-clear-on-reset' => true,
                 'class' => 'geoselect',
         ]);
-
     }
 }

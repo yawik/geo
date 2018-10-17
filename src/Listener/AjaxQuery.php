@@ -15,13 +15,12 @@ use Geo\Service\AbstractClient;
 
 /**
  * ${CARET}
- * 
+ *
  * @author Mathias Gelhausen <gelhausen@cross-solution.de>
- * @todo write test 
+ * @todo write test
  */
-class AjaxQuery 
+class AjaxQuery
 {
-
     private $client;
 
     public function __construct(AbstractClient $client)

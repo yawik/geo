@@ -17,13 +17,12 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * ${CARET}
- * 
+ *
  * @author Mathias Gelhausen <gelhausen@cross-solution.de>
- * @todo write test 
+ * @todo write test
  */
 class AjaxQueryFactory implements FactoryInterface
 {
-
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $client = $container->get('Geo/Client');

@@ -14,14 +14,12 @@ use Zend\Http\Client;
 
 /**
  * ${CARET}
- * 
+ *
  * @author Mathias Gelhausen <gelhausen@cross-solution.de>
- * @todo write test 
+ * @todo write test
  */
 class Photon extends AbstractClient
 {
-
-
     protected function setupClient($uri)
     {
         $client = new Client();
@@ -32,7 +30,9 @@ class Photon extends AbstractClient
             'leisure', 'natural', 'bridge', 'waterway'
         ];
 
-        $osmTags = array_map(function($i) { return urlencode('!' . $i); }, $osmTags);
+        $osmTags = array_map(function ($i) {
+            return urlencode('!' . $i);
+        }, $osmTags);
 
         $uri = sprintf(
             '%s?osm_tag=%s',

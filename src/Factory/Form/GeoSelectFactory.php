@@ -17,14 +17,13 @@ use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
  * ${CARET}
- * 
+ *
  * @author Mathias Gelhausen <gelhausen@cross-solution.de>
  * @author Anthonius Munthi <me@itstoni.com>
- * @todo write test 
+ * @todo write test
  */
 class GeoSelectFactory implements FactoryInterface
 {
-
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         /* @var \Geo\Options\ModuleOptions $geoOptions */

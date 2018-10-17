@@ -34,7 +34,8 @@ class IndexController extends AbstractActionController
      */
     protected $geoCoderUrl;
 
-    public function __construct(ModuleOptions $options) {
+    public function __construct(ModuleOptions $options)
+    {
         $this->plugin = $options->getPlugin();
         $this->geoCoderUrl = $options->getGeoCoderUrl();
     }

@@ -15,9 +15,9 @@ use Zend\Json\Json;
 
 /**
  * ${CARET}
- * 
+ *
  * @author Mathias Gelhausen <gelhausen@cross-solution.de>
- * @todo write test 
+ * @todo write test
  */
 class AbstractClient
 {
@@ -62,10 +62,10 @@ class AbstractClient
 
     public function query($term, array $params = [])
     {
-    	/* @TODO: [ZF3] overriding $term value because it always returns null */
-    	if(is_null($term)){
-		    $term = $_REQUEST['q'];
-	    }
+        /* @TODO: [ZF3] overriding $term value because it always returns null */
+        if (is_null($term)) {
+            $term = $_REQUEST['q'];
+        }
         $cacheId = md5($term);
 
         if ($this->cache && ($result = $this->cache->getItem($cacheId))) {
@@ -100,5 +100,4 @@ class AbstractClient
     {
         return $result;
     }
-
 }

@@ -18,11 +18,11 @@ use Zend\Hydrator\Strategy\StrategyInterface;
 
 /**
  * Strategy to hydrate/extract a location entity.
- * 
+ *
  * @author Mathias Gelhausen <gelhausen@cross-solution.de>
  * @since 0.29
  * @since 0.29.2 - add support for multiple locations.
- * @todo write test 
+ * @todo write test
  */
 class GeoSelectHydratorStrategy implements StrategyInterface
 {
@@ -69,7 +69,7 @@ class GeoSelectHydratorStrategy implements StrategyInterface
      */
     public function extract($value, $object = null)
     {
-        if ($value instanceOf Collection || is_array($value)) {
+        if ($value instanceof Collection || is_array($value)) {
             $values = [];
             foreach ($value as $collItem) {
                 $values[] = $this->extract($collItem, $object);
@@ -77,17 +77,17 @@ class GeoSelectHydratorStrategy implements StrategyInterface
             return $values;
         }
 
-        if ($value instanceOf Location) {
+        if ($value instanceof Location) {
             return $value->toString();
         }
 
         if (0 === strpos($value, '{')) {
             return $value;
         }
-        if ($value){
+        if ($value) {
             $data = $this->geoClient->queryOne($value);
             return $data['id'];
-        }else{
+        } else {
             return;
         }
     }

@@ -14,7 +14,7 @@ use Zend\Stdlib\AbstractOptions;
 
 /**
  * ${CARET}
- * 
+ *
  * @author Carsten Bleek <bleek@cross-solution.de>
  */
 class ModuleOptions extends AbstractOptions
@@ -24,7 +24,7 @@ class ModuleOptions extends AbstractOptions
      * Used geo location plugin. Possible values:
      *  - photon
      *  - geo
-     * 
+     *
      * @var string $plugin
      */
     protected $plugin = "photon";

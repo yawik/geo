@@ -11,7 +11,6 @@
 
 namespace Geo\Form;
 
-
 use Core\Form\Hydrator\HydratorStrategyProviderInterface;
 use Core\Form\Hydrator\HydratorStrategyProviderTrait;
 use Jobs\Entity\Location;
@@ -54,15 +53,15 @@ class GeoSelectSimple extends Select implements HydratorStrategyProviderInterfac
     {
         return new ClosureStrategy(
             /* extract */
-            function($value) {
-                if ($value instanceOf Location) {
+            function ($value) {
+                if ($value instanceof Location) {
                     return $value->toString();
                 }
 
                 if (0 === strpos($value, '{')) {
                     return $value;
                 }
-                if ($value){
+                if ($value) {
                     foreach ($this->getValueOptions() as $optValue => $opt) {
                         if (false !== strpos($value, $opt)) {
                             return $optValue;
@@ -71,7 +70,6 @@ class GeoSelectSimple extends Select implements HydratorStrategyProviderInterfac
                 }
 
                 return null;
-
             },
 
             /* hydrate */

@@ -94,17 +94,18 @@
         if (initialValue.length) {
             for (var i=initialValue.length-1; i>=0; i-=1) {
                 console.debug("initVal " + i + ": "+ initialValue[i]);
-                var $option = $('<option selected>Test</option>');
-                $option.val(initialValue[i]);
-
-                var $data = initialValue[i];
-
-                // only parse a string value
-                if(typeof data ==='string'){
-                   $data = JSON.parse($data);
+                if (typeof initialValue[i] == 'object') {
+                    var data = initialValue[i];
+                    var dataStr = JSON.stringify(data);
+                } else {
+                    var dataStr = initialValue[i];
+                    var data = JSON.parse(dataStr);
                 }
-                
-                $option.text(formatSelection({id: initialValue[i], data: $data}));
+                    
+                var $option = $('<option selected>Test</option>');
+                $option.val(dataStr);
+
+                $option.text(formatSelection({id: dataStr, data: data}));
                 $node.prepend($option);
             }
             $node.trigger('change');

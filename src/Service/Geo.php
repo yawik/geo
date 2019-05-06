@@ -6,7 +6,7 @@
  * @license MIT
  * @copyright  2013 - 2017 Cross Solution <http://cross-solution.de>
  */
-  
+
 /** */
 namespace Geo\Service;
 
@@ -14,9 +14,9 @@ use Zend\Http\Client;
 
 /**
  * ${CARET}
- * 
+ *
  * @author Mathias Gelhausen <gelhausen@cross-solution.de>
- * @todo write test 
+ * @todo write test
  */
 class Geo extends AbstractClient
 {
@@ -36,7 +36,7 @@ class Geo extends AbstractClient
         $query->set('plz', 0 < (int) $term ? 1 : 0);
     }
 
-    protected function processResult($result)
+    protected function processResult($result, array $options = [])
     {
         $result = json_decode($result, JSON_OBJECT_AS_ARRAY);
 

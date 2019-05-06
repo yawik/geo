@@ -6,7 +6,7 @@
  * @license MIT
  * @copyright  2013 - 2017 Cross Solution <http://cross-solution.de>
  */
-  
+
 /** */
 namespace Geo\Service;
 
@@ -45,23 +45,30 @@ class Photon extends AbstractClient
         return $client;
     }
 
-    protected function preQuery($term, array $params)
+    protected function preQuery($term, array $options = [])
     {
         $query = $this->client->getRequest()->getQuery();
         $query->set('q', $term)->set('lon', '10.4486')->set('lat', '51.1641');
 
-        if (isset($params['lang'])) {
-            $query->set('lang', $params['lang']);
+        if (isset($options['params']['lang'])) {
+            $query->set('lang', $options['params']['lang']);
         }
     }
 
-    protected function processResult($result)
+    protected function processResult($result, array $options = [])
     {
         $result = json_decode($result);
         $result = $result->features;
         $r=[];
 
         foreach ($result as $key => $val) {
+            if (isset($options['required_fields'])) {
+                foreach ($options['required_fields'] as $fieldName) {
+                    if (!property_exists($val->properties, $fieldName) || !$val->properties->$fieldName) {
+                        continue 2;
+                    }
+                }
+            }
             $row=[
                   'postalCode' => (property_exists($val->properties, 'postcode') ? $val->properties->postcode:''),
                   'city' =>(property_exists($val->properties, 'city') ? $val->properties->city:''),

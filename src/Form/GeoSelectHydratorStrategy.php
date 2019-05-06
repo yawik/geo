@@ -6,7 +6,7 @@
  * @license MIT
  * @copyright  2013 - 2017 Cross Solution <http://cross-solution.de>
  */
-  
+
 /** */
 namespace Geo\Form;
 
@@ -85,8 +85,8 @@ class GeoSelectHydratorStrategy implements StrategyInterface
             return $value;
         }
         if ($value) {
-            $data = $this->geoClient->queryOne($value);
-            return $data['id'];
+            $data = $this->geoClient->queryOne($value, ['required_fields' => ['city']]);
+            return \Zend\Json\Json::encode($data);
         } else {
             return;
         }

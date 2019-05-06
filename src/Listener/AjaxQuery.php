@@ -6,7 +6,7 @@
  * @license MIT
  * @copyright  2013 - 2017 Cross Solution <http://cross-solution.de>
  */
-  
+
 /** */
 namespace Geo\Listener;
 
@@ -32,8 +32,8 @@ class AjaxQuery
     {
         $request = $event->getRequest();
         $query   = $request->getQuery();
-        
-        $result  = $this->client->query($query->get('q'), ['lang' => $query->get('lang')]);
+
+        $result  = $this->client->query($query->get('q'), ['params' => ['lang' => $query->get('lang')]]);
 
         return ['items' => $result];
     }

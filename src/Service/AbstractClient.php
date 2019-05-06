@@ -6,7 +6,7 @@
  * @license MIT
  * @copyright  2013 - 2017 Cross Solution <http://cross-solution.de>
  */
-  
+
 /** */
 namespace Geo\Service;
 
@@ -54,25 +54,26 @@ class AbstractClient
         return new Client($uri);
     }
 
-    protected function preQuery($term, array $params)
+    protected function preQuery($term, array $options)
     {
         $params['q'] = $term;
-        $this->client->setParameterGet($params);
+        $this->client->setParameterGet($options['params'] ?? []);
     }
 
-    public function query($term, array $params = [])
+    public function query($term, array $options = [])
     {
         /* @TODO: [ZF3] overriding $term value because it always returns null */
         if (is_null($term)) {
             $term = $_REQUEST['q'];
         }
-        $cacheId = md5($term);
+
+        $cacheId = md5($term . serialize($options));
 
         if ($this->cache && ($result = $this->cache->getItem($cacheId))) {
             return $result;
         }
 
-        $this->preQuery($term, $params);
+        $this->preQuery($term, $options);
 
         $response = $this->client->send();
         if ($response->getStatusCode() !== 200) {
@@ -80,7 +81,7 @@ class AbstractClient
         }
 
         $result = $response->getBody();
-        $result = $this->processResult($result);
+        $result = $this->processResult($result, $options);
 
         if ($this->cache) {
             $this->cache->setItem($cacheId, $result);
@@ -89,14 +90,14 @@ class AbstractClient
         return $result;
     }
 
-    public function queryOne($term)
+    public function queryOne($term, array $options = [])
     {
-        $result = $this->query($term);
+        $result = $this->query($term, $options);
 
         return isset($result[0]) ? $result[0] : false;
     }
 
-    protected function processResult($result)
+    protected function processResult($result, array $options = [])
     {
         return $result;
     }

@@ -46,7 +46,7 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
         $client = $this->serviceLocator->get('Geo/Client');
-        $result = $client->query($this->params()->fromQuery('q'), ['lang' => $this->params('lang')]);
+        $result = $client->query($this->params()->fromQuery('q'), ['params' => ['lang' => $this->params('lang')]]);
         return new JsonModel(['items' => $result]);
     }
 }

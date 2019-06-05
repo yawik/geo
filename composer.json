@@ -21,7 +21,7 @@
         "yawik", "module", "zf3"
     ],
     "require": {
-        "yawik/core": ">=0.33@dev",
+        "yawik/core": ">=0.33",
         "jmikola/geojson": "^1.0.0"
     },
     "autoload": {
@@ -32,6 +32,11 @@
     "autoload-dev": {
         "psr-0": {
             "": "test/"
+        }
+    },
+    "config": {
+        "platform": {
+            "ext-mongo": "1.6.16"
         }
     },
     "extra": {

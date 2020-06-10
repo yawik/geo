@@ -18,8 +18,11 @@
         }
     ],
     "keywords": [
-        "yawik", "module", "zf3"
+        "yawik", "module", "laminas"
     ],
+    "support": {
+        "source": "https://github.com/yawik/geo"
+    },
     "require": {
         "yawik/core": ">=0.33",
         "jmikola/geojson": "^1.0.0"
